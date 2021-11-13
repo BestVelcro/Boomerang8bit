@@ -1,10 +1,12 @@
 {
   "resources": [
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
+    {"id":{"name":"obj_boomerang","path":"objects/obj_boomerang/obj_boomerang.yy",},"order":3,},
     {"id":{"name":"tl_ground","path":"tilesets/tl_ground/tl_ground.yy",},"order":0,},
     {"id":{"name":"spr_tilesetground","path":"sprites/spr_tilesetground/spr_tilesetground.yy",},"order":0,},
     {"id":{"name":"obj_collisionplataform","path":"objects/obj_collisionplataform/obj_collisionplataform.yy",},"order":2,},
     {"id":{"name":"spr_collisionplataform","path":"sprites/spr_collisionplataform/spr_collisionplataform.yy",},"order":5,},
+    {"id":{"name":"spr_boomerang","path":"sprites/spr_boomerang/spr_boomerang.yy",},"order":6,},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":3,},
     {"id":{"name":"spr_tilesetfloor","path":"sprites/spr_tilesetfloor/spr_tilesetfloor.yy",},"order":1,},
     {"id":{"name":"spr_collisionground","path":"sprites/spr_collisionground/spr_collisionground.yy",},"order":4,},

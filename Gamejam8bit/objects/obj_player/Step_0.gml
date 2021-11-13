@@ -9,6 +9,11 @@ var move = (key_right - key_left) * 4;
 
 hsp = move * walksp;
 
+if(move != 0){
+	view_side = sign(move);
+	running = 1.5;
+}else{ running = 1;}
+
 //Horizontal Collision
 var wall_collision = instance_place(x+hsp,y,obj_collisionground);
 if(wall_collision != noone){
