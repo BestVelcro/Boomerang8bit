@@ -1,5 +1,5 @@
-hsp = 0;
+ hsp = 0;
 vsp = 0;
 grv = 0.5;
-walksp = 2;
-side = 0;
+walksp = 1;
+side = choose(-1,1);

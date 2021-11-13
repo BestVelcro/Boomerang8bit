@@ -1,1 +1,2 @@
-enemies = [obj_skinnyenemy]
+enemies = [obj_skinnyenemy];
+randomize();

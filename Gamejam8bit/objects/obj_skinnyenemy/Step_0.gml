@@ -1,7 +1,9 @@
 
-var move = side;
+hsp = side * walksp;
 
-hsp = move * walksp;
+if(!place_meeting(x+(hsp+(side*sprite_width)),y+sprite_height,obj_collisionground) and !place_meeting(x+(hsp+(side*sprite_width)),y+sprite_height,obj_collisionplataform)){
+	side = side * -1;
+}
 
 //Horizontal Collision
 var wall_collision = instance_place(x+hsp,y,obj_collisionground);
@@ -16,7 +18,9 @@ if(wall_collision != noone){
 			y--
 		}
 		y--
-		if(place_meeting(x+sign(hsp),y,obj_collisionground)) y = floor_y;
+		if(place_meeting(x+sign(hsp),y,obj_collisionground)){y = floor_y; side = side * -1;}
+	}else{
+		side = side * -1;
 	}
 	
 hsp = 0;	
