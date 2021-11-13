@@ -6,3 +6,7 @@ throw_start = false;
 throw_minpower = 15;
 throw_maxpower = 30;
 throw_power = throw_minpower;
+throw_side = 0;
+returning = false;
+safetp = false;
+tpoffset = sprite_height/2;

@@ -2,6 +2,7 @@ if(!instance_exists(obj_player)) instance_destroy(); else{
 // Attack Key
 key_attack = keyboard_check_released(ord("Z"));
 key_charge = keyboard_check(ord("Z"));
+key_teleport = keyboard_check_pressed(ord("X"));
 
 // Keep it on the Player or move it into then 
 if(locked){
@@ -21,15 +22,67 @@ if(key_charge and locked){
 }
 
 //If the attack Key is pressed, throw object according to player side
-if(key_attack){
+if(key_attack and locked){
 	locked = false;
 	hsp += (throw_power * obj_player.view_side)*obj_player.running;
 	throw_start = true;
 	throw_power = throw_minpower
+	throw_side = obj_player.view_side;
+}
+
+if(key_teleport and !locked){
+	with(obj_player){
+		if(!place_meeting(other.x,other.y,obj_collisionground)){
+			other.safetp = true;
+			other.tpoffset = 0;
+		}else if(!place_meeting(other.x,other.y-(sprite_height/2),obj_collisionground)){
+			other.safetp = true;
+			other.tpoffset = sprite_height/2;
+		}
+	}
+	if(safetp){
+	obj_player.x = x;
+	obj_player.y = y-tpoffset;
+	locked = true;
+	safetp = false;
+	}
+}
+
+//Check for Wall collision when going
+
+if(place_meeting(x,y,obj_collisionground) and sign(hsp) == sign(throw_side) and !returning){
+	hsp = hsp * -1;
+	returning = true;
+	repeat(5){
+		var particle = instance_create_layer(x,y,"Weapon",obj_wallparticle);
+		particle.speed = sign(hsp);
+		particle.direction = direction-irandom_range(-45,45)
+		show_debug_message(string(particle.image_angle));
+	}
+}
+
+
+//Check for Enemy Collision
+var possible_enemy = instance_place(x,y,all);
+if(possible_enemy != noone and sign(hsp) == sign(throw_side) and !returning and !locked){
+	for (var i = array_length_1d(obj_game.enemies) - 1; i > -1; i--;){
+	if(possible_enemy.object_index == obj_game.enemies[i]){
+			hsp = hsp * -1;
+			returning = true;
+			repeat(5){
+			var particle = instance_create_layer(x,y,"Weapon",obj_enemyparticle);
+			particle.speed = sign(hsp);
+			particle.direction = direction-irandom_range(-45,45)
+			show_debug_message(string(particle.image_angle));
+			}
+			instance_destroy(possible_enemy);
+	}
+	}
 }
 
 if(!place_meeting(x,y,obj_player)) throw_start = false;
 
 x += hsp;
 y += vsp;
+
 }
