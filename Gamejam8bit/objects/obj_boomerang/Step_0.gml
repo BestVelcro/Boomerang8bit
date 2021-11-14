@@ -1,10 +1,10 @@
 if(!instance_exists(obj_player)) instance_destroy(); else{	
 // Attack Key
 key_attack = keyboard_check_pressed(ord("Z"));
-key_charge = keyboard_check(ord("Z"));
 key_teleport = keyboard_check_pressed(ord("X"));
 
 // Keep it on the Player or move it into then 
+if(!instance_exists(obj_boomeranghitLocation)){
 if(locked){
 	x = obj_player.x;
 	y = obj_player.y;
@@ -15,18 +15,16 @@ if(locked){
 	vsp += sign(obj_player.y - y) * bspeed;
 	image_angle += 45;
 }
-
-//Charging Attack
-if(key_charge and locked){
-	throw_power = clamp(throw_power+1,throw_minpower,throw_maxpower);
+}else{
+	x = obj_boomeranghitLocation.x;
+	y = obj_boomeranghitLocation.y;
 }
 
 //If the attack Key is pressed, throw object according to player side
 if(key_attack and locked){
 	locked = false;
-	hsp += (throw_maxpower * obj_player.view_side)*obj_player.running;
+	hsp += (throw_power * obj_player.view_side)*obj_player.running;
 	throw_start = true;
-	throw_power = throw_minpower
 	throw_side = obj_player.view_side;
 }
 
@@ -44,6 +42,8 @@ if(key_teleport and !locked and cooldown >= maxcooldown){
 	if(safetp){
 	obj_player.x = x;
 	obj_player.y = y-tpoffset;
+	instance_create_layer(x,y,"Weapon",obj_boomeranghit);
+	instance_create_layer(x,y,"Weapon",obj_boomeranghitLocation);
 	locked = true;
 	safetp = false;
 	}
