@@ -11,7 +11,7 @@ hsp = move * walksp;
 
 if(move != 0){
 	view_side = sign(move);
-	running = 1.5;
+	running = 1.25;
 }else{ running = 1;}
 
 //Horizontal Collision
