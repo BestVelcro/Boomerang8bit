@@ -17,15 +17,10 @@ if(locked){
 	if(sign(hsp) != sign(throw_side)) returning = true;
 
 	if(returning){
-		show_debug_message("coming back");
-		show_debug_message(string(player_xside)+" Player x side");
 	acceleration_x += bspeed;
 	acceleration_y += bspeed;
-	show_debug_message(string(acceleration_x)+" Acceleration x");
-		show_debug_message(string(player_xside * acceleration_x)+" hsp calculation");
 	hsp = player_xside * acceleration_x;
 	vsp = player_yside * acceleration_y;
-	show_debug_message(string(hsp)+" hsp");
 	
 	x_location = x + hsp;
 	if(player_xside != sign(obj_player.x - x_location)){
@@ -103,10 +98,9 @@ if(possible_enemy != noone and sign(hsp) == sign(throw_side) and !returning and 
 	if(possible_enemy.object_index == obj_game.enemies[i]){
 			hsp = hsp * - 1;
 			returning = true;
-			EnemyParticles(100,-10);
+			EnemyParticles(100,-10, self, possible_enemy);
 			instance_destroy(possible_enemy);
 			cooldown = maxcooldown;
-			show_debug_message("Hit Called");
 			if(place_meeting(x,y,obj_player)) locked = true;
 	}
 	}

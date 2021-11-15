@@ -20,6 +20,7 @@
     {"id":{"name":"obj_skinnyenemy","path":"objects/obj_skinnyenemy/obj_skinnyenemy.yy",},"order":4,},
     {"id":{"name":"spr_wallparticle","path":"sprites/spr_wallparticle/spr_wallparticle.yy",},"order":8,},
     {"id":{"name":"spr_boomerang","path":"sprites/spr_boomerang/spr_boomerang.yy",},"order":6,},
+    {"id":{"name":"obj_thoughenemy","path":"objects/obj_thoughenemy/obj_thoughenemy.yy",},"order":10,},
     {"id":{"name":"spr_enemyparticle","path":"sprites/spr_enemyparticle/spr_enemyparticle.yy",},"order":9,},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},"order":3,},
     {"id":{"name":"spr_tilesetfloor","path":"sprites/spr_tilesetfloor/spr_tilesetfloor.yy",},"order":1,},
