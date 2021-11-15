@@ -92,6 +92,7 @@ if(place_meeting(x,y,obj_collisionground) and sign(hsp) == sign(throw_side) and 
 		particle.speed = sign(hsp);
 		particle.direction = direction-irandom_range(-45,45)
 	}
+	if(place_meeting(x,y,obj_player)) locked = true;
 }
 
 
