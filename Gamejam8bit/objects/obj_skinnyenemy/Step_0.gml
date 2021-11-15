@@ -1,8 +1,14 @@
+if(state == "VULNERABLE"){
+	show_debug_message(string(image_angle));
+	if(image_angle/90 != 1 and fall_side > 0 or image_angle/90 != -1 and fall_side < 0) image_angle += fall_side * 2;
+}
 
+if(state == "IDLE"){
 hsp = side * walksp;
 
 if(!place_meeting(x+(hsp+(side*sprite_width)),y+sprite_height,obj_collisionground) and !place_meeting(x+(hsp+(side*sprite_width)),y+sprite_height,obj_collisionplataform)){
 	side = side * -1;
+}
 }
 
 //Horizontal Collision

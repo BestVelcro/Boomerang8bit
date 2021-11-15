@@ -10,9 +10,39 @@ if(locked){
 	y = obj_player.y;
 	hsp = 0;
 	vsp = 0;
+	x_stop = false; y_stop = false;
 }else{
-	hsp += sign(obj_player.x - x) * bspeed;
-	vsp += sign(obj_player.y - y) * bspeed;
+	var player_xside = sign(obj_player.x - x);
+	var player_yside = sign(obj_player.y - y);
+	if(sign(hsp) != sign(throw_side)) returning = true;
+
+	if(returning){
+		show_debug_message("coming back");
+		show_debug_message(string(player_xside)+" Player x side");
+	acceleration_x += bspeed;
+	acceleration_y += bspeed;
+	show_debug_message(string(acceleration_x)+" Acceleration x");
+		show_debug_message(string(player_xside * acceleration_x)+" hsp calculation");
+	hsp = player_xside * acceleration_x;
+	vsp = player_yside * acceleration_y;
+	show_debug_message(string(hsp)+" hsp");
+	
+	x_location = x + hsp;
+	if(player_xside != sign(obj_player.x - x_location)){
+		x = obj_player.x;
+		x_stop = true;
+	}
+	
+	y_location = y + vsp;
+	if(player_yside != sign(obj_player.y - y_location)){
+		y = obj_player.y;
+		y_stop = true;
+	}
+	}else{
+		hsp += player_xside * bspeed;
+		vsp += player_yside * bspeed;
+	}
+	
 	image_angle += 45;
 }
 }else{
@@ -26,6 +56,8 @@ if(key_attack and locked){
 	hsp += (throw_power * obj_player.view_side)*obj_player.running;
 	throw_start = true;
 	throw_side = obj_player.view_side;
+	acceleration_x = 0; acceleration_y = 0;
+	returning = false;
 }
 
 //Teleport
@@ -59,7 +91,6 @@ if(place_meeting(x,y,obj_collisionground) and sign(hsp) == sign(throw_side) and 
 		var particle = instance_create_layer(x,y,"Weapon",obj_wallparticle);
 		particle.speed = sign(hsp);
 		particle.direction = direction-irandom_range(-45,45)
-		show_debug_message(string(particle.image_angle));
 	}
 }
 
@@ -69,16 +100,13 @@ var possible_enemy = instance_place(x,y,all);
 if(possible_enemy != noone and sign(hsp) == sign(throw_side) and !returning and !locked){
 	for (var i = array_length_1d(obj_game.enemies) - 1; i > -1; i--;){
 	if(possible_enemy.object_index == obj_game.enemies[i]){
-			hsp = hsp * -1;
+			hsp = hsp * - 1;
 			returning = true;
-			repeat(5){
-			var particle = instance_create_layer(x,y,"Weapon",obj_enemyparticle);
-			particle.speed = sign(hsp);
-			particle.direction = direction-irandom_range(-45,45)
-			show_debug_message(string(particle.image_angle));
-			}
+			EnemyParticles(100,-10);
 			instance_destroy(possible_enemy);
 			cooldown = maxcooldown;
+			show_debug_message("Hit Called");
+			if(place_meeting(x,y,obj_player)) locked = true;
 	}
 	}
 }
@@ -90,13 +118,8 @@ repeat(hitCount){
 	with(ds_list_find_value(back_enemies, 0)){
 			for (var i = array_length_1d(obj_game.enemies) - 1; i > -1; i--;){
 				if(object_index == obj_game.enemies[i]){
-				repeat(5){
-				var particle = instance_create_layer(other.x,other.y,"Weapon",obj_enemyparticle);
-				particle.speed = sign(other.hsp);
-				particle.direction = direction-irandom_range(-45,45)
-				show_debug_message(string(particle.image_angle));
-				}
-				instance_destroy();
+				state = "VULNERABLE";
+				fall_side = sign(other.hsp);
 				other.cooldown = other.maxcooldown;
 				}
 			}
@@ -109,7 +132,6 @@ ds_list_destroy(back_enemies);
 
 if(!place_meeting(x,y,obj_player)) throw_start = false;
 
-x += hsp;
-y += vsp;
-show_debug_message(string(cooldown));
+if(!x_stop) x += hsp;
+if(!y_stop) y += vsp;
 }

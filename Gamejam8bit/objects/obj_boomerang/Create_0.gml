@@ -9,6 +9,10 @@ returning = false;
 safetp = false;
 tpoffset = sprite_height/2;
 hitCount = 0;
+acceleration_x = 0;
+acceleration_y = 0;
+x_stop = false;
+y_stop = false;
 
 //Teleport bar
 maxcooldown = 100;
