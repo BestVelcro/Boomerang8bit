@@ -1,0 +1,12 @@
+ hsp = 0;
+vsp = 0;
+grv = 0.5;
+walksp = 1;
+side = 0 //choose(-1,1);
+state = "IDLE";
+fall_side = 1;
+callhit = false;
+knockback_power = 0;
+knockback_move = 0;
+knockback_maxpower = 4;
+knockback_side = 1;

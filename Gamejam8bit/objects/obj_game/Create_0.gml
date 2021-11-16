@@ -1,3 +1,3 @@
-enemies = [obj_skinnyenemy,obj_thoughenemy];
+enemies = [obj_skinnyenemy,obj_shieldenemy];
 randomize();
 

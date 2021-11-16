@@ -15,7 +15,7 @@ if(locked){
 	var player_xside = sign(obj_player.x - x);
 	var player_yside = sign(obj_player.y - y);
 	if(sign(hsp) != sign(throw_side)) returning = true;
-
+	
 	if(returning){
 	acceleration_x += bspeed;
 	acceleration_y += bspeed;
@@ -26,13 +26,14 @@ if(locked){
 	if(player_xside != sign(obj_player.x - x_location)){
 		x = obj_player.x;
 		x_stop = true;
-	}
+	}else x_stop = false;
 	
 	y_location = y + vsp;
 	if(player_yside != sign(obj_player.y - y_location)){
 		y = obj_player.y;
 		y_stop = true;
-	}
+	}else y_stop = false;
+	
 	}else{
 		hsp += player_xside * bspeed;
 		vsp += player_yside * bspeed;
@@ -44,7 +45,6 @@ if(locked){
 	x = obj_boomeranghitLocation.x;
 	y = obj_boomeranghitLocation.y;
 }
-
 //If the attack Key is pressed, throw object according to player side
 if(key_attack and locked){
 	locked = false;
@@ -90,27 +90,12 @@ if(place_meeting(x,y,obj_collisionground) and sign(hsp) == sign(throw_side) and 
 	if(place_meeting(x,y,obj_player)) locked = true;
 }
 
-
-//Check for Enemy Collision
-var possible_enemy = instance_place(x,y,all);
-if(possible_enemy != noone and sign(hsp) == sign(throw_side) and !returning and !locked){
-	for (var i = array_length_1d(obj_game.enemies) - 1; i > -1; i--;){
-	if(possible_enemy.object_index == obj_game.enemies[i]){
-			hsp = hsp * - 1;
-			returning = true;
-			EnemyParticles(100,-10, self, possible_enemy);
-			instance_destroy(possible_enemy);
-			cooldown = maxcooldown;
-			if(place_meeting(x,y,obj_player)) locked = true;
-	}
-	}
-}
-
-if(!locked){
+if(!locked and returning){
 var back_enemies = ds_list_create();
 hitCount = instance_place_list(x,y,all,back_enemies,true);
 repeat(hitCount){
 	with(ds_list_find_value(back_enemies, 0)){
+		if(sign(x - other.x) != sign(x - obj_player.x)){
 			for (var i = array_length_1d(obj_game.enemies) - 1; i > -1; i--;){
 				if(object_index == obj_game.enemies[i]){
 				state = "VULNERABLE";
@@ -118,6 +103,7 @@ repeat(hitCount){
 				other.cooldown = other.maxcooldown;
 				}
 			}
+		}
 	}
 	ds_list_delete(back_enemies, 0);
 }
@@ -125,6 +111,29 @@ ds_list_destroy(back_enemies);
 }
 
 
+//Check for Enemy Collision
+var possible_enemy = ds_list_create();
+firstHit = instance_place_list(x,y,all,possible_enemy,true);
+	if(firstHit > 0 and !returning and !locked){
+repeat(firstHit){
+	with(ds_list_find_value(possible_enemy, 0)){
+		for (var i = array_length_1d(obj_game.enemies) - 1; i > -1; i--;){
+		if(object_index == obj_game.enemies[i]){
+			other.hsp = other.hsp * - 1;
+			other.returning = true;
+			other.cooldown = other.maxcooldown;
+			if(object_index != obj_shieldenemy){
+				EnemyParticles(100,-10, other, object_index);
+				instance_destroy(); 
+			}else callhit = true;
+		}
+		}
+}
+ds_list_delete(possible_enemy,0);
+	}
+			ds_list_destroy(possible_enemy);
+			// if(place_meeting(x,y,obj_player)) locked = true;
+}
 if(!place_meeting(x,y,obj_player)) throw_start = false;
 
 if(!x_stop) x += hsp;
