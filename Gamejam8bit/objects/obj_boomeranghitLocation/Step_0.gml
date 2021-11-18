@@ -1,22 +1,22 @@
 if(instance_exists(obj_boomeranghit)){
 	switch(obj_boomeranghit.image_index){
 		case 0:
-		sprite_set_offset(spr_boomeranghitLocation,60,39);
+		sprite_set_offset(spr_boomeranghitLocation,6,19);
 		break;
 		case 1:
-		sprite_set_offset(spr_boomeranghitLocation,65,20);
+		sprite_set_offset(spr_boomeranghitLocation,9,1);
 		break;
 		case 2:
-		sprite_set_offset(spr_boomeranghitLocation,64,11);
+		sprite_set_offset(spr_boomeranghitLocation,8,5);
 		break;
 		case 3:
-		sprite_set_offset(spr_boomeranghitLocation,61,6);
+		sprite_set_offset(spr_boomeranghitLocation,7,3);
 		break;
 		case 4:
-		sprite_set_offset(spr_boomeranghitLocation,59,2);
+		sprite_set_offset(spr_boomeranghitLocation,6,2);
 		break;
 		case 5:
-		sprite_set_offset(spr_boomeranghitLocation,57,0);
+		sprite_set_offset(spr_boomeranghitLocation,4,0);
 		break;
 	}
 	

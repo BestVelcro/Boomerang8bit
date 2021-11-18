@@ -1,7 +1,7 @@
 // Player Input
 key_right = keyboard_check(vk_right);
 key_left = keyboard_check(vk_left);
-key_up = keyboard_check(vk_up);
+key_up = keyboard_check_pressed(vk_up);
 key_down = keyboard_check(vk_down);
 
 //Movement Calculation
@@ -39,11 +39,11 @@ vsp += grv;
 
 //Vertical Collision
 if(place_meeting(x,y+vsp,obj_collisionground)){
-	vsp = key_up * -7;
+	vsp = key_up * -5;
 }
 
 if(vsp > 0 and place_meeting(x,y+vsp,obj_collisionplataform) and !place_meeting(x,y,obj_collisionplataform) and !key_down){
-	vsp = key_up * -7;
+	vsp = key_up * -5;
 }
 
 y += vsp; 

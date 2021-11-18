@@ -1,9 +1,9 @@
 locked = true;
 hsp = 0;
 vsp = 0;
-bspeed = 2;
+bspeed = 1;
 throw_start = false;
-throw_power = 30;
+throw_power = 15;
 throw_side = 0;
 returning = false;
 safetp = false;
@@ -20,8 +20,8 @@ iframe = false;
 maxcooldown = 100;
 cooldown = maxcooldown;
 
-teleportbar_width = 200;
-teleportbar_height = 28;
+teleportbar_width = 100;
+teleportbar_height = 14;
 teleportbar_x = room_width - sprite_get_width(spr_teleportborder) - (room_width/64);
 teleportbar_y = room_height - sprite_get_height(spr_teleportbar) - (room_height/64);
 

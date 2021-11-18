@@ -19,7 +19,7 @@ if(instance_exists(obj_player)){
 if(state == "VULNERABLE"){
 	fall = true;
 	if(image_angle/90 != 1 and fall_side > 0 or image_angle/90 != -1 and fall_side < 0) image_angle += fall_side * 2;else{
-		if(distance < see_distance and !collisions){
+		if(distance < see_distance/2 and !collisions){
 			state = "SHOOTING";
 		}
 	}
@@ -27,7 +27,7 @@ if(state == "VULNERABLE"){
 
 if(state == "IDLE"){
 	
-	if(distance < see_distance*1.5 and !collisions){
+	if(distance < see_distance and !collisions){
 		state = "CHASE";
 	}
 	
@@ -47,6 +47,9 @@ if(state == "IDLE"){
 		with(myfloor){other.foundstairs = instance_place_list(x,y,all,stairs,true);}
 		repeat(foundstairs){
 		with(ds_list_find_value(stairs, 0)){
+			var floor_stair = instance_place(x,other.goto_y,obj_currentfloor);
+			var goto_floor = instance_position(other.goto_x,other.goto_y,obj_currentfloor);
+			if(goto_floor == floor_stair){
 			if(other.goto_y > y and object_index == obj_endstair and other.y < y){
 				if(distance_to_object(other) <= other.closest_stair){
 					other.closest_stair = distance_to_object(other);
@@ -59,6 +62,7 @@ if(state == "IDLE"){
 					other.closest_stair = distance_to_object(other);
 					other.best_stair = id;
 				}
+			}
 			}
 		}
 		ds_list_delete(stairs, 0);
@@ -123,7 +127,7 @@ if(state = "CHASE"){
 		if(distance < see_distance and !collisions){
 			state = "SHOOTING";
 		}
-	walksp = default_walksp*2;
+	walksp = default_walksp;
 	var myfloor = instance_position(x,y+sprite_height/2,obj_currentfloor);
 	var goto_floor = instance_position(goto_x,goto_y,obj_currentfloor);
 	if(myfloor != goto_floor){
@@ -134,6 +138,9 @@ if(state = "CHASE"){
 		with(myfloor){other.foundstairs = instance_place_list(x,y,all,stairs,true);}
 		repeat(foundstairs){
 		with(ds_list_find_value(stairs, 0)){
+			var floor_stair = instance_place(x,other.goto_y,obj_currentfloor);
+			var goto_floor = instance_position(other.goto_x,other.goto_y,obj_currentfloor);
+			if(goto_floor == floor_stair){
 			if(other.goto_y > y and object_index == obj_endstair and other.y < y){
 				if(distance_to_object(other) <= other.closest_stair){
 					other.closest_stair = distance_to_object(other);
@@ -147,12 +154,13 @@ if(state = "CHASE"){
 					other.best_stair = id;
 				}
 			}
+			}
 		}
 		ds_list_delete(stairs, 0);
 		}
 		closest_stair = 9999;
 		ds_list_destroy(stairs);
-		side = sign(best_stair.x - x);
+		if(best_stair != noone) side = sign(best_stair.x - x);
 		newsound = false;
 		descending = false;
 		previous_floor = myfloor;
@@ -224,9 +232,8 @@ if(state = "CHASE"){
 			state = "CHASE";
 			goto_x = obj_player.x;
 			goto_y = obj_player.y;
-			not_shot = true;
 		}
-		if(distance > see_distance/2 and fall or collisions and fall){state = "VULNERABLE"; not_shot = true;}
+		if(distance > see_distance/2 and fall or collisions and fall){state = "VULNERABLE";}
 	}
 	
 //Horizontal Collision

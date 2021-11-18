@@ -201,7 +201,7 @@ if(!action and !moving){
 //Chasing movement
 if(state = "CHASE"){
 	
-	walksp = default_walksp*2;
+	walksp = default_walksp;
 	var myfloor = instance_position(x,y+sprite_height/2,obj_currentfloor);
 	var goto_floor = instance_position(goto_x,goto_y,obj_currentfloor);
 	if(myfloor != goto_floor){

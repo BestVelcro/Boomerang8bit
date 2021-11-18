@@ -1,2 +1,2 @@
-speed = 10;
+speed = 5;
 allied = false;

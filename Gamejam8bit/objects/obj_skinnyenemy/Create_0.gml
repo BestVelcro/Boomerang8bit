@@ -1,7 +1,7 @@
  hsp = 0;
 vsp = 0;
 grv = 0.5;
-walksp = 0.75;
+walksp = 1;
 default_walksp = walksp;
 side = 0 //choose(-1,1);
 state = "IDLE";

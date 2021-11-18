@@ -73,7 +73,6 @@ if(key_teleport and !locked and cooldown >= maxcooldown){
 	obj_player.y = y-tpoffset;
 	instance_create_layer(x,y,"Weapon",obj_boomeranghit);
 	instance_create_layer(x,y,"Weapon",obj_boomeranghitLocation);
-	locked = true;
 	safetp = false;
 	iframe = true;
 	alarm[1] = room_speed/4;
@@ -127,7 +126,7 @@ repeat(firstHit){
 			other.returning = true;
 			if(object_index != obj_shieldenemy){
 				other.cooldown = other.maxcooldown;
-				EnemyParticles(100,-10, other, object_index);
+				EnemyParticles(50,-5, other, object_index);
 				instance_destroy(); 
 			}else callhit = true;
 		}
