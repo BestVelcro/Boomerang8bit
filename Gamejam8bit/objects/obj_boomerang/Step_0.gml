@@ -121,8 +121,8 @@ repeat(firstHit){
 		if(object_index == obj_game.enemies[i]){
 			other.hsp = other.hsp * - 1;
 			other.returning = true;
-			other.cooldown = other.maxcooldown;
 			if(object_index != obj_shieldenemy){
+				other.cooldown = other.maxcooldown;
 				EnemyParticles(100,-10, other, object_index);
 				instance_destroy(); 
 			}else callhit = true;

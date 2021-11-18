@@ -11,9 +11,11 @@ repeat(hitCount){
 	with(ds_list_find_value(enemies_hitted, 0)){
 			for (var i = array_length_1d(obj_game.enemies) - 1; i > -1; i--;){
 				if(object_index == obj_game.enemies[i]){
-				EnemyParticles(100,-10, obj_player, object_index);
-				instance_destroy();
+				if(object_index != obj_shieldenemy){
+				EnemyParticles(100,-10, other, object_index);
+				instance_destroy(); 
 				obj_boomerang.cooldown = obj_boomerang.maxcooldown;
+				}else callhit = true;
 				}
 			}
 	}

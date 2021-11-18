@@ -17,3 +17,10 @@ if(instance_exists(best_stair)){
 
 draw_set_colour(c_red);
 draw_arrow(goto_x,goto_y-40,goto_x,goto_y,30)
+
+draw_circle(spawn_x-100,spawn_y,5,false);
+draw_circle(spawn_x+100,spawn_y,5,false);
+draw_circle(spawn_x,spawn_y-15,5,false);
+draw_circle(spawn_x,spawn_y+15,5,false);
+draw_set_color(c_green);
+draw_circle(goto_x,goto_y+5,5,false);

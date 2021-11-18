@@ -13,8 +13,7 @@ if(state != "VULNERABLE"){
 }else{
 	show_debug_message(string(image_angle));
 	if(image_angle/90 != 1 and fall_side > 0 or image_angle/90 != -1 and fall_side < 0) image_angle += fall_side * 2;
-	if(callhit){instance_destroy(); EnemyParticles(100,-10, obj_boomerang, self);}
-	
+	if(callhit and instance_exists(obj_boomerang)){instance_destroy(); EnemyParticles(100,-10, obj_boomerang, self);obj_boomerang.cooldown = obj_boomerang.maxcooldown}
 }
 
 if(state == "IDLE"){

@@ -22,3 +22,16 @@ best_stair = noone;
 newsound = false;
 
 last_y = y;
+
+last_seen_x = 0;
+last_seen_y = 0;
+saw_player = false;
+
+spawn_x = x;
+spawn_y = y;
+
+place_seen = false;
+out_of_sight = true;
+
+fall = false;
+not_shot = true;
