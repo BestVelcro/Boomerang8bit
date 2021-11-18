@@ -1,4 +1,6 @@
-	if(instance_exists(obj_player)){
+var see_distance = sprite_get_width(spr_hearsound);
+
+if(instance_exists(obj_player)){
 	if(!instance_exists(obj_collisionenemy)) instance_create_depth(0,0,1000,obj_collisionenemy);
 	obj_collisionenemy.x = x;
 	obj_collisionenemy.y = y;
@@ -17,7 +19,7 @@
 if(state == "VULNERABLE"){
 	fall = true;
 	if(image_angle/90 != 1 and fall_side > 0 or image_angle/90 != -1 and fall_side < 0) image_angle += fall_side * 2;else{
-		if(distance < room_width/8 and !collisions){
+		if(distance < see_distance and !collisions){
 			state = "SHOOTING";
 		}
 	}
@@ -25,7 +27,7 @@ if(state == "VULNERABLE"){
 
 if(state == "IDLE"){
 	
-	if(distance < room_width/4 and !collisions){
+	if(distance < see_distance*1.5 and !collisions){
 		state = "CHASE";
 	}
 	
@@ -68,6 +70,7 @@ if(state == "IDLE"){
 		descending = false;
 		previous_floor = myfloor;
 		last_y = y;
+		alarm[3] = room_speed*10;
 		}
 		
 		if(y-last_y > 5 and goto_floor.y < y and bbox_bottom < best_stair.y){
@@ -117,7 +120,7 @@ if(!action and !moving){
 
 //Chasing movement
 if(state = "CHASE"){
-		if(distance < room_width/4 and !collisions){
+		if(distance < see_distance and !collisions){
 			state = "SHOOTING";
 		}
 	walksp = default_walksp*2;
@@ -184,7 +187,7 @@ if(state = "CHASE"){
 	}
 	}
 	
-	if(distance < room_width/2 and !collisions){
+	if(distance < see_distance*1.5 and !collisions){
 		goto_x = obj_player.x;
 		goto_y = obj_player.y;
 		saw_player = true;
@@ -217,13 +220,13 @@ if(state = "CHASE"){
 		not_shot = false;
 			}
 		}
-		if(distance > room_width/4 or collisions){
+		if(distance > see_distance or collisions){
 			state = "CHASE";
 			goto_x = obj_player.x;
 			goto_y = obj_player.y;
 			not_shot = true;
 		}
-		if(distance > room_width/8 and fall or collisions and fall){state = "VULNERABLE"; not_shot = true;}
+		if(distance > see_distance/2 and fall or collisions and fall){state = "VULNERABLE"; not_shot = true;}
 	}
 	
 //Horizontal Collision

@@ -65,6 +65,8 @@ y += vsp;
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 
+var see_distance = sprite_get_width(spr_hearsound);
+
 knockback_power = clamp(knockback_power-grv,0,knockback_maxpower);
 knockback_move = knockback_power * knockback_side;
 
@@ -102,7 +104,7 @@ if(state != "VULNERABLE"){
 
 if(state == "IDLE"){
 	
-	if(distance < room_width/4 and !collisions){
+	if(distance < see_distance and !collisions){
 		state = "CHASE";
 	}
 	
@@ -192,7 +194,7 @@ if(!action and !moving){
 }
 }
 
-	if(distance < sprite_width*2 and !collisions){
+	if(distance < sprite_width*2 and !collisions and abs(y - obj_player.y) < 20){
 			stop = true;
 	}
 
@@ -233,7 +235,7 @@ if(state = "CHASE"){
 		descending = false;
 		previous_floor = myfloor;
 		last_y = y;
-		alarm[3] = room_speed*30;
+		alarm[3] = room_speed*10;
 		}
 		
 		if(y-last_y > 3 and goto_floor.y < y and bbox_bottom < best_stair.y and sign(best_stair.x - x) == side){
@@ -264,7 +266,7 @@ if(state = "CHASE"){
 	}
 	}
 	
-	if(distance < room_width/2 and !collisions){
+	if(distance < see_distance*1.5 and !collisions){
 		goto_x = obj_player.x;
 		goto_y = obj_player.y;
 		saw_player = true;
@@ -316,9 +318,7 @@ if(place_meeting(x+hsp,y,obj_player)){
 
 if(stop){
 		hsp = 0;
-		show_debug_message("parado");
 		if(distance > sprite_width*3 or collisions){
-			show_debug_message("nao parado");
 			stop = false;
 		}
 }
