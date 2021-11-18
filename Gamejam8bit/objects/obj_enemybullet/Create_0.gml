@@ -1,1 +1,2 @@
-speed = 20;
+speed = 10;
+allied = false;

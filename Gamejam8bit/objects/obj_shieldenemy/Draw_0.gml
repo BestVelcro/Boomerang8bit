@@ -1,7 +1,8 @@
 draw_set_colour(c_white);
 draw_self();
-var length = string_width(string(hsp)+" hsp");
-draw_text(x-length/2,y-25-(sprite_height/2),string(hsp)+" hsp");
+var distance = distance_to_object(obj_player);
+var length = string_width("Distance :"+string(distance));
+draw_text(x-length/2,y-25-(sprite_height/2),"Distance :"+string(distance));
 var length = string_width(string(state));
 draw_text(x-length/2,y-40-(sprite_height/2),string(state));
 /*

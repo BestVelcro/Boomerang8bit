@@ -8,7 +8,6 @@ function EnemyParticles(amount, max_distance, object, enemy){
 			repeat(amount){
 			var particle = instance_create_layer(x,y,"Weapon",obj_enemyparticle);
 				particle.hsp = sign(enemy.x - object.x)*side_distance;
-				show_debug_message(object_get_name(enemy.object_index));
 				particle.vsp = up_distance;
 				particle.image_index = irandom(particle.image_number-1);
 				particle.image_xscale = sign((enemy.x - object.x)*-1);

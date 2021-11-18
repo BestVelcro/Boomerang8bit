@@ -17,5 +17,3 @@ if(place_meeting(x,y+vsp,obj_collisionground)){
 
 
 y += vsp; 
-
-show_debug_message(string(hsp));

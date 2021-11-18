@@ -2,6 +2,8 @@ if(!instance_exists(obj_player)) instance_destroy(); else{
 // Attack Key
 key_attack = keyboard_check_pressed(ord("Z"));
 key_teleport = keyboard_check_pressed(ord("X"));
+key_down = keyboard_check(vk_down);
+key_up = keyboard_check(vk_up);
 
 // Keep it on the Player or move it into then 
 if(!instance_exists(obj_boomeranghitLocation)){
@@ -73,6 +75,8 @@ if(key_teleport and !locked and cooldown >= maxcooldown){
 	instance_create_layer(x,y,"Weapon",obj_boomeranghitLocation);
 	locked = true;
 	safetp = false;
+	iframe = true;
+	alarm[1] = room_speed/4;
 	}
 	cooldown = 0;
 }

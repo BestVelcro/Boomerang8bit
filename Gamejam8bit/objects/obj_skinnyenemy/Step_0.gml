@@ -1,3 +1,4 @@
+	if(instance_exists(obj_player)){
 	if(!instance_exists(obj_collisionenemy)) instance_create_depth(0,0,1000,obj_collisionenemy);
 	obj_collisionenemy.x = x;
 	obj_collisionenemy.y = y;
@@ -224,7 +225,7 @@ if(state = "CHASE"){
 		}
 		if(distance > room_width/8 and fall or collisions and fall){state = "VULNERABLE"; not_shot = true;}
 	}
-
+	
 //Horizontal Collision
 var wall_collision = instance_place(x+hsp,y,obj_collisionground);
 if(wall_collision != noone){
@@ -262,3 +263,4 @@ if(vsp > 0 and place_meeting(x,y+vsp,obj_collisionplataform) and !place_meeting(
 last_y = y;
 
 y += vsp; 
+	}

@@ -14,6 +14,8 @@ acceleration_y = 0;
 x_stop = false;
 y_stop = false;
 
+iframe = false;
+
 //Teleport bar
 maxcooldown = 100;
 cooldown = maxcooldown;
