@@ -37,6 +37,14 @@ x += hsp;
 
 vsp += grv;
 
+if(!place_meeting(x,y+1,obj_collisionground) and !place_meeting(x,y+1,obj_collisionplataform)){
+	var i = 1;
+	while(!place_meeting(x,y+i,obj_collisionground) and !place_meeting(x,y+i,obj_collisionplataform)){
+		i++
+	}
+	location_y = y+i;
+}else{location_y = y;}
+
 //Vertical Collision
 if(place_meeting(x,y+vsp,obj_collisionground)){
 	vsp = key_up * -5;

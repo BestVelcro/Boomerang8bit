@@ -6,7 +6,7 @@
     "path": "folders/Scripts/pathfinding.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_fill_the_grid",
+  "name": "scr_follow_the_path",
   "tags": [],
   "resourceType": "GMScript",
 }
