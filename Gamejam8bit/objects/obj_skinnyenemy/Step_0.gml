@@ -47,9 +47,6 @@ if(state == "IDLE"){
 		with(myfloor){other.foundstairs = instance_place_list(x,y,all,stairs,true);}
 		repeat(foundstairs){
 		with(ds_list_find_value(stairs, 0)){
-			var floor_stair = instance_place(x,other.goto_y,obj_currentfloor);
-			var goto_floor = instance_position(other.goto_x,other.goto_y,obj_currentfloor);
-			if(goto_floor == floor_stair){
 			if(other.goto_y > y and object_index == obj_endstair and other.y < y){
 				if(distance_to_object(other) <= other.closest_stair){
 					other.closest_stair = distance_to_object(other);
@@ -63,13 +60,12 @@ if(state == "IDLE"){
 					other.best_stair = id;
 				}
 			}
-			}
 		}
 		ds_list_delete(stairs, 0);
 		}
 		closest_stair = 9999;
 		ds_list_destroy(stairs);
-		side = sign(best_stair.x - x);
+		if(best_stair != noone) side = sign(best_stair.x - x);
 		newsound = false;
 		descending = false;
 		previous_floor = myfloor;
@@ -77,8 +73,10 @@ if(state == "IDLE"){
 		alarm[3] = room_speed*10;
 		}
 		
+		if(best_stair != noone){
 		if(y-last_y > 5 and goto_floor.y < y and bbox_bottom < best_stair.y){
 			side = side * -1;
+		}
 		}
 		
 		if(position_meeting(x,y+1+(sprite_height/2),best_stair) and y < goto_floor.y){
@@ -138,9 +136,7 @@ if(state = "CHASE"){
 		with(myfloor){other.foundstairs = instance_place_list(x,y,all,stairs,true);}
 		repeat(foundstairs){
 		with(ds_list_find_value(stairs, 0)){
-			var floor_stair = instance_place(x,other.goto_y,obj_currentfloor);
-			var goto_floor = instance_position(other.goto_x,other.goto_y,obj_currentfloor);
-			if(goto_floor == floor_stair){
+
 			if(other.goto_y > y and object_index == obj_endstair and other.y < y){
 				if(distance_to_object(other) <= other.closest_stair){
 					other.closest_stair = distance_to_object(other);
@@ -153,7 +149,6 @@ if(state = "CHASE"){
 					other.closest_stair = distance_to_object(other);
 					other.best_stair = id;
 				}
-			}
 			}
 		}
 		ds_list_delete(stairs, 0);
@@ -224,7 +219,7 @@ if(state = "CHASE"){
 		var player_angle = point_direction(x,y,obj_player.x,obj_player.y);
 		bullet.direction = player_angle;
 		bullet.image_angle = player_angle;
-		alarm[2] = room_speed/2;
+		alarm[2] = room_speed;
 		not_shot = false;
 			}
 		}

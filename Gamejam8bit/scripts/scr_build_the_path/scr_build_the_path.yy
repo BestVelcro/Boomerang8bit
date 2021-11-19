@@ -6,7 +6,7 @@
     "path": "folders/Scripts/pathfinding.yy",
   },
   "resourceVersion": "1.0",
-  "name": "EnemyParticles",
+  "name": "scr_build_the_path",
   "tags": [],
   "resourceType": "GMScript",
 }

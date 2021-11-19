@@ -1,5 +1,8 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_grid",
+    "path": "sprites/spr_grid/spr_grid.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
@@ -20,7 +23,7 @@
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":4,"eventType":7,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":2,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
@@ -29,7 +32,7 @@
     "path": "folders/Objects/HUD.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_camera",
+  "name": "obj_grid",
   "tags": [],
   "resourceType": "GMObject",
 }
