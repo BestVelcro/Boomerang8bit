@@ -1,4 +1,4 @@
-if(state != "VULNERABLE"){
+if(state != "VULNERABLE" and other.allied){
 		var hitside = sign(obj_boomerang.x - x);
 		image_xscale = hitside;
 		image_index = 1; image_speed = 1;

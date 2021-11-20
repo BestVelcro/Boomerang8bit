@@ -33,5 +33,5 @@ callhit = false;
 
 knockback_power = 0;
 knockback_move = 0;
-knockback_maxpower = 4;
+knockback_maxpower = 5;
 knockback_side = 1;

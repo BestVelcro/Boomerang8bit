@@ -2,8 +2,8 @@
 
 camera_set_view_size(view,view_width,view_height);
 
-x += (xTo - x)/25;
-y += (yTo - y)/25;
+x += (xTo - x)/5;
+y += (yTo - y)/5;
 
 if(follow != noone and instance_exists(follow)){
 	xTo = clamp(follow.x-view_width/2,0,room_width-view_width);
