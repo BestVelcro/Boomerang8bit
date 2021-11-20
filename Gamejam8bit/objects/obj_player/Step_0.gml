@@ -39,11 +39,33 @@ vsp += grv;
 
 if(!place_meeting(x,y+1,obj_collisionground) and !place_meeting(x,y+1,obj_collisionplataform)){
 	var i = 1;
-	while(!place_meeting(x,y+i,obj_collisionground) and !place_meeting(x,y+i,obj_collisionplataform)){
+	var ground = instance_position(x,y+i,obj_collisionground)
+	var plataform = instance_position(x,y+i,obj_collisionplataform);
+	while(ground == noone and plataform == noone){
 		i++
+		var ground = instance_position(x,y+i,obj_collisionground)
+		var plataform = instance_position(x,y+i,obj_collisionplataform);
 	}
-	location_y = y+i;
-}else{location_y = y;}
+	if(ground != noone){
+		location_x = ground.x+ground.sprite_width/2;;
+		location_y = ground.y-ground.sprite_height/2;
+	}
+	if(plataform != noone){
+		location_x = plataform.x+plataform.sprite_width/2;;
+		location_y = plataform.y-plataform.sprite_height/2;
+	}
+}else{location_y = y;location_x = x;}
+
+if(place_meeting(x,y,obj_collisionplataform)){
+	var i = 1;
+	var ground = instance_position(x,y+i,obj_collisionground)
+	while(ground == noone){
+		i++
+		var ground = instance_position(x,y+i,obj_collisionground)
+	}
+		location_x = ground.x+ground.sprite_width/2;
+		location_y = ground.y-ground.sprite_height/2;
+}
 
 //Vertical Collision
 if(place_meeting(x,y+vsp,obj_collisionground)){

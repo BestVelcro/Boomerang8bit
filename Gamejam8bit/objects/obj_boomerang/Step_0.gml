@@ -122,6 +122,7 @@ repeat(firstHit){
 	with(ds_list_find_value(possible_enemy, 0)){
 		for (var i = array_length_1d(obj_game.enemies) - 1; i > -1; i--;){
 		if(object_index == obj_game.enemies[i]){
+			with(obj_boomerang){if(place_meeting(x,y,obj_player)) locked = true;}
 			other.hsp = other.hsp * - 1;
 			other.returning = true;
 			if(object_index != obj_shieldenemy){

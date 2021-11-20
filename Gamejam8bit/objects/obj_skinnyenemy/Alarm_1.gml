@@ -1,3 +1,4 @@
-if(out_of_sight){
+if(state == "CHASE"){
 	state = "IDLE";
+	saw_player = false;
 }

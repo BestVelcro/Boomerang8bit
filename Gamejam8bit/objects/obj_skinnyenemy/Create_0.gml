@@ -1,37 +1,30 @@
- hsp = 0;
-vsp = 0;
-grv = 0.5;
-walksp = 1;
-default_walksp = walksp;
-side = 0 //choose(-1,1);
-state = "IDLE";
-fall_side = 1;
-action = false;
 
-goto_x = 0;
-goto_y = 0;
 
-previous_floor = noone;
-current_floor = noone;
+/// initialize variables in order to draw grid and the path
+ds_gridpathfinding = noone ;
+path_building = noone ;
 
-descending = false;
+/// Initialize variables for ennemy movement
+max_speed = 1;
+game_gravity = 1;
+// jump_height = -10;
+speed_v = 0 ;
+speed_h = 0;
 
-closest_stair = 9999;
-best_stair = noone;
+/// Intialialize variables for follow the path
+action = 0 ;
+path_point = 0 ;
+jump_action = 0 ;
 
-newsound = false;
+falling = false;
 
-last_y = y;
-
-last_seen_x = 0;
-last_seen_y = 0;
+collisions = false;
+check_path = false;
 saw_player = false;
 
-spawn_x = x;
-spawn_y = y;
-
-place_seen = false;
-out_of_sight = true;
-
-fall = false;
+state = "IDLE";
+action = false;
+waiting = false;
 not_shot = true;
+last_floor = noone;
+change_floor = false;

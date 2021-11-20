@@ -22,7 +22,7 @@ cooldown = maxcooldown;
 
 teleportbar_width = 100;
 teleportbar_height = 14;
-teleportbar_x = room_width - sprite_get_width(spr_teleportborder) - (room_width/64);
-teleportbar_y = room_height - sprite_get_height(spr_teleportbar) - (room_height/64);
+teleportbar_x = room_width/2//room_width - sprite_get_width(spr_teleportborder) - (room_width/64);
+teleportbar_y = room_height/2//room_height - sprite_get_height(spr_teleportbar) - (room_height/64);
 
 alarm[0] = room_speed/2;

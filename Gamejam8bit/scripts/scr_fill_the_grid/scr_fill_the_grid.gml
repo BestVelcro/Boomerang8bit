@@ -21,7 +21,7 @@ ds_grid_set(ds_gridpathfinding,ax,ay,0);
 for (var i = 1; i < 200; i += 1){
 	if(path_found = 1){
 		ds_list_destroy(point_list);
-		// ds_grid_destroy(ds_gridpathfinding);
+		ds_grid_destroy(ds_gridpathfinding);
 		return path_found;
 		break;
 	}

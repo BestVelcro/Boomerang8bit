@@ -7,20 +7,26 @@ if(wall_collision != noone){
 	while(!place_meeting(x+sign(speed_h),y,obj_collisionground)){
 		x += sign(speed_h);
 		}
-	
+		if(state != "IDLE"){
+	show_debug_message("collision"+string(irandom(20)));
 	if(wall_collision.bbox_top > bbox_top) and (place_meeting(x,y+1,obj_collisionground)){	
 		var floor_y = y;
 		while(bbox_bottom >= wall_collision.bbox_top){
 			y--
 		}
 		y--
-		if(place_meeting(x+sign(speed_h),y,obj_collisionground)){ y = floor_y; speed_h = 0;}
+		if(place_meeting(x+sign(speed_h),y,obj_collisionground)){ y = floor_y; speed_h = 0;show_debug_message("stop");}
 	}else if(wall_collision.bbox_top > bbox_top) and (!place_meeting(x,y+1,obj_collisionground)){
 		speed_h = 0;
+		show_debug_message("stop");
 	}
+		}else{speed_h = 0;}
 }
 
 x += speed_h;
+if(object_index == obj_shieldenemy){
+	x += knockback_move;
+}
 
 // Collision vertical with object Collision
 

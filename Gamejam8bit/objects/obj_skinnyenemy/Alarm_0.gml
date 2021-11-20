@@ -1,4 +1,4 @@
 if(state = "IDLE"){
-	side = irandom_range(-1,1);
+	speed_h = (max_speed/2) * irandom_range(-1,1);
 	action = false;
 }

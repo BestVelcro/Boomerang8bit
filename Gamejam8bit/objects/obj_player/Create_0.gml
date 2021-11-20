@@ -6,3 +6,4 @@ view_side = 1;
 running = 1;
 
 location_y = y;
+location_x = x;
