@@ -1,3 +1,7 @@
+if(cutscene){
+	hsp = 0;
+}else{
+
 // Player Input
 key_right = keyboard_check(vk_right);
 key_left = keyboard_check(vk_left);
@@ -13,6 +17,7 @@ if(move != 0){
 	view_side = sign(move);
 	running = 1.25;
 }else{ running = 1;}
+}
 
 //Horizontal Collision
 var wall_collision = instance_place(x+hsp,y,obj_collisionground);

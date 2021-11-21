@@ -3,7 +3,7 @@ if(instance_exists(obj_camera)){
 	teleportbar_y = obj_camera.view_height - sprite_get_height(spr_teleportbar) - (room_height/64);
 }
 
-if(room != Level1){
+if(room != Level1 and !cutscene){
 draw_sprite_stretched(spr_teleportbar,0,teleportbar_x,teleportbar_y,(cooldown/maxcooldown) * teleportbar_width, teleportbar_height);
 draw_sprite(spr_teleportborder,0,teleportbar_x,teleportbar_y);
 }

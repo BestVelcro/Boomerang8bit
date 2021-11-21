@@ -1,3 +1,8 @@
+if(cutscene){
+	x = obj_player.x;
+	y = obj_player.y;
+}else{
+
 if(!instance_exists(obj_player)) instance_destroy(); else{	
 // Attack Key
 key_attack = keyboard_check_pressed(ord("Z"));
@@ -142,4 +147,5 @@ if(!place_meeting(x,y,obj_player)) throw_start = false;
 
 if(!x_stop) x += hsp;
 if(!y_stop) y += vsp;
+}
 }

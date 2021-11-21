@@ -7,3 +7,5 @@ running = 1;
 
 location_y = y;
 location_x = x;
+
+cutscene = false;
