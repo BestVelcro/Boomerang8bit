@@ -28,3 +28,5 @@ waiting = false;
 not_shot = true;
 last_floor = noone;
 change_floor = false;
+
+direction_go = choose(-1,1);

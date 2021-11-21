@@ -12,5 +12,5 @@ if(file_exists("savelevel.save")){
 if(variable_global_exists("level")){
 room_goto(global.level);
 }else{
-	room_goto(Room1);	
+	room_goto(Level1);	
 }

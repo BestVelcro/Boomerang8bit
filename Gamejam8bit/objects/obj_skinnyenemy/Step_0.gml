@@ -29,14 +29,20 @@ if(instance_exists(obj_player)){
 }
 	
 if(state == "IDLE"){
+	max_speed = 0.5;
 	if(distance < see_distance*1.5 and !collisions){
 		state = "CHASE";
 		action = false;
 	}
 	if(!action){
 	action = true;
-	alarm[0] = room_speed;
+	alarm[0] = room_speed/2;
 	}
+	if(!position_meeting(x+speed_h+(sprite_height/2*sign(speed_h)),y+sprite_height/2,obj_collisionground)){
+		speed_h = 0;
+	}
+}else{
+	max_speed = 1;
 }
 	
 if(state == "CHASE"){
@@ -99,11 +105,6 @@ if(state == "SHOOTING"){
 		alarm[2] = room_speed;
 		not_shot = false;
 	}
-}
-
-if keyboard_check(ord("S"))
-{
-scr_call_pathfinding(obj_player.location_x,obj_player.location_y);
 }
 
 falling = false;

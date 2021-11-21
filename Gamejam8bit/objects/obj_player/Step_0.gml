@@ -27,10 +27,12 @@ if(wall_collision != noone){
 			y--
 		}
 		y--
-		if(place_meeting(x+sign(hsp),y,obj_collisionground)) y = floor_y;
+		if(place_meeting(x+sign(hsp),y,obj_collisionground)){y = floor_y; hsp = 0;}
+	}else{
+		hsp = 0;	
 	}
 	
-hsp = 0;	
+
 }
 
 x += hsp;

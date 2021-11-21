@@ -15,12 +15,18 @@ if(wall_collision != noone){
 			y--
 		}
 		y--
-		if(place_meeting(x+sign(speed_h),y,obj_collisionground)){ y = floor_y; speed_h = 0;show_debug_message("stop");}
+		if(place_meeting(x+sign(speed_h),y,obj_collisionground)){ y = floor_y; speed_h = 0;
+			}
 	}else if(wall_collision.bbox_top > bbox_top) and (!place_meeting(x,y+1,obj_collisionground)){
 		speed_h = 0;
-		show_debug_message("stop");
 	}
-		}else{speed_h = 0;}
+		}else{
+			speed_h = 0;
+			}
+}
+
+if(object_index == obj_shieldenemy and place_meeting(x+knockback_move,y,obj_collisionground)){
+	knockback_move = 0;
 }
 
 x += speed_h;

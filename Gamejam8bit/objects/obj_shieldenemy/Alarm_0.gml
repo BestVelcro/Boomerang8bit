@@ -1,4 +1,10 @@
 if(state = "IDLE"){
-	speed_h = (max_speed/2) * irandom_range(-1,1);
+	var stop = choose(true,false);
+	if(stop){
+		speed_h = 0;
+	}else{
+	speed_h = (max_speed/2) * direction_go;
+	direction_go = direction_go * -1;
+	}
 	action = false;
 }

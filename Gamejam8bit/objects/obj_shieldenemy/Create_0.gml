@@ -35,3 +35,5 @@ knockback_power = 0;
 knockback_move = 0;
 knockback_maxpower = 5;
 knockback_side = 1;
+
+direction_go = choose(-1,1);

@@ -1,3 +1,6 @@
+if(!bbox_right || !bbox_bottom || bbox_left>=room_width || bbox_top>=room_height){
+
+}else{
 var range = instance_create_layer(x,y,"Enemies",obj_hearsound);
 with(range){
 	image_xscale = 2;
@@ -22,4 +25,5 @@ with(range){
 	image_xscale = 1;
 	image_yscale = 1;
 	instance_destroy();
+}
 }

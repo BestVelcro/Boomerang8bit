@@ -42,6 +42,7 @@ if(state != "VULNERABLE"){
 }
 	
 if(state == "IDLE"){
+	max_speed = 0.5;
 	if(distance < see_distance*1.5 and !collisions){
 		state = "CHASE";
 		action = false;
@@ -50,10 +51,15 @@ if(state == "IDLE"){
 	action = true;
 	alarm[0] = room_speed;
 	}
+	if(!position_meeting(x+speed_h+(sprite_height/2*sign(speed_h)),y+sprite_height/2,obj_collisionground)){
+		speed_h = 0;
+	}
+}else{
+	max_speed = 1;
 }
 	
 if(state == "CHASE"){
-	if(distance < floor(see_distance/3) and !collisions){
+	if(distance < floor(see_distance/4) and !collisions){
 		state = "SHOOTING";
 	}
 if(distance < see_distance*1.5 and !collisions and myfloor == goto_floor){
@@ -93,6 +99,7 @@ if(!saw_player and !waiting){
 }
 
 if(state == "SHOOTING"){
+	 image_xscale = sign(obj_player.x - x);
 	 speed_h = 0;
      if path_exists(path_building) {
          path_delete (path_building);
@@ -100,11 +107,18 @@ if(state == "SHOOTING"){
      path_point = 0 ;
      action = 0 ;
      jump_action = 0 ;
-	if(distance > floor(see_distance/3) or collisions){
+	if(distance > floor(see_distance/4) or collisions){
 		state = "CHASE";
 		scr_call_pathfinding(obj_player.location_x,obj_player.location_y);
 	}
 }
+
+
+if keyboard_check(ord("S"))
+{
+scr_call_pathfinding(obj_player.location_x,obj_player.location_y);
+}
+
 
 falling = false;
 // Follow the path if path exists

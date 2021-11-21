@@ -1,3 +1,6 @@
+if(!bbox_right || !bbox_bottom || bbox_left>=room_width || bbox_top>=room_height){
+
+}else{
 var range = instance_create_layer(x,y,"Enemies",obj_hearsound);
 with(range){
 	var _hitList = ds_list_create();
@@ -18,4 +21,5 @@ with(range){
 		ds_list_delete(_hitList,0);
 	}
 	instance_destroy();
+}
 }
