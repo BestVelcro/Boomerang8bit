@@ -1,6 +1,12 @@
 if(!bbox_right || !bbox_bottom || bbox_left>=room_width || bbox_top>=room_height){
 
 }else{
+	audio_play_sound(choose(EnemyDeath1,EnemyDeath2,EnemyDeath3),600,false);
+	var audio = audio_play_sound(choose(EnemyDeath1,EnemyDeath2,EnemyDeath3),600,false);
+	audio_sound_gain(audio,0.4,0);
+	if(instance_exists(obj_boomerang)){
+		obj_boomerang.cooldown = obj_boomerang.maxcooldown;
+	}
 var range = instance_create_layer(x,y,"Enemies",obj_hearsound);
 with(range){
 	var _hitList = ds_list_create();

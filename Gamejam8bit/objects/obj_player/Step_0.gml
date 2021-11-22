@@ -52,6 +52,9 @@ if(!place_meeting(x,y+1,obj_collisionground) and !place_meeting(x,y+1,obj_collis
 		i++
 		var ground = instance_position(x,y+i,obj_collisionground)
 		var plataform = instance_position(x,y+i,obj_collisionplataform);
+		if(y+i > room_height){
+			break;
+		}
 	}
 	if(ground != noone){
 		location_x = ground.x+ground.sprite_width/2;;
@@ -69,6 +72,9 @@ if(place_meeting(x,y,obj_collisionplataform)){
 	while(ground == noone){
 		i++
 		var ground = instance_position(x,y+i,obj_collisionground)
+		if(y+i > room_height){
+			break;
+		}
 	}
 		location_x = ground.x+ground.sprite_width/2;
 		location_y = ground.y-ground.sprite_height/2;

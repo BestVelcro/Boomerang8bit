@@ -54,6 +54,7 @@ if(locked){
 }
 //If the attack Key is pressed, throw object according to player side
 if(key_attack and locked){
+	audio_play_sound(choose(Throw1,Throw2,Throw3,Throw4,Throw5,Throw6),500,false);
 	locked = false;
 	hsp += (throw_power * obj_player.view_side)*obj_player.running;
 	throw_start = true;
@@ -74,12 +75,22 @@ if(key_teleport and !locked and cooldown >= maxcooldown){
 		}
 	}
 	if(safetp){
+	audio_play_sound(choose(Swing1,Swing2),800,false);
 	obj_player.x = x;
 	obj_player.y = y-tpoffset;
 	instance_create_layer(x,y,"Weapon",obj_boomeranghit);
 	instance_create_layer(x,y,"Weapon",obj_boomeranghitLocation);
 	safetp = false;
 	iframe = true;
+	var times = 0;
+	if(obj_player.view_side == 1) var start_angle = 158; if(obj_player.view_side == -1) var start_angle = 338;
+	repeat(45){
+		var particle = instance_create_layer(obj_player.x,obj_player.y,"Door",obj_playerdeath);
+		particle.direction = start_angle+times;
+		particle.speed = 3;
+		particle.image_speed = 2;
+		times++;
+	}
 	alarm[1] = room_speed/4;
 	}
 	cooldown = 0;

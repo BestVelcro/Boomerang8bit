@@ -98,11 +98,12 @@ if(state == "SHOOTING"){
 		scr_call_pathfinding(obj_player.location_x,obj_player.location_y);
 	}
 	if(not_shot){
+		audio_play_sound(choose(Shot1,Shot2,Shot3),1000,false);
 		var bullet = instance_create_layer(x,y,"Weapon",obj_enemybullet);
 		var player_angle = point_direction(x,y,obj_player.x,obj_player.y);
 		bullet.direction = player_angle;
 		bullet.image_angle = player_angle;
-		alarm[2] = room_speed;
+		alarm[2] = room_speed/2;
 		not_shot = false;
 	}
 }

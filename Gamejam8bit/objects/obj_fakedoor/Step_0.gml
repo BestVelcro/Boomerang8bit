@@ -1,4 +1,8 @@
-if(instance_exists(obj_player) and start == true and !new_enemy and count < 4){
+if(start and !random_start){
+	random_start = true;
+	alarm[1] = irandom_range(20,100);
+}
+if(instance_exists(obj_player) and go and !new_enemy and count < 4){
 	image_index = 1;
 	count++;
 	if(count < 4){

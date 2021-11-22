@@ -28,6 +28,7 @@ if(instance_exists(obj_player)){
 	
 if(state != "VULNERABLE"){
 		if(callhit){
+		audio_play_sound(choose(Reflect1,Reflect2,Reflect3,Reflect4),600,false);
 		var hitside = sign(obj_boomerang.x - x);
 		image_xscale = hitside;
 		image_index = 1; image_speed = 1;
